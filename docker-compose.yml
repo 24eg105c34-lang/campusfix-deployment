@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: https://github.com/24eg105c34-lang/campusfix-fullstack.git#main:campusfix-backend
+      dockerfile: Dockerfile
+    container_name: campusfix-backend
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: 8080
+    volumes:
+      - campusfix-data:/app/data
+  frontend:
+    build:
+      context: https://github.com/24eg105c34-lang/campusfix-fullstack.git#main:campusfix-frontend
+      dockerfile: Dockerfile
+    container_name: campusfix-frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+volumes:
+  campusfix-data:
